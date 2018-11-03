@@ -3,7 +3,6 @@ require 'sinatra'
 require 'pry'
 require 'securerandom'
 require_relative "room"
-require_relative "rooms"
 
 get '/' do
   @titulo = 'HORA DE MAAAAATAAAAAAAAARRRRR!!!!! (Não o Maurício...)!'
