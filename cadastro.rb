@@ -26,6 +26,6 @@ post '/rooms' do
   }
 
   munchkin_rooms.transaction do
-  munchkin_rooms[:munchkin_room] = munchkin_room.to_json
+    munchkin_rooms[:munchkin_room] = munchkin_room.to_json
   end
 end
