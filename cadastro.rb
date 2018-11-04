@@ -12,7 +12,7 @@ end
 
 post '/rooms' do
   room_data = params['data']
-  created_room = Room.new(SecureRandom.uuid, room_data['name'], Time.now)
+  created_room = Room.new(SecureRandom.uuid, room_data['name'])
 
   json(
     status: 'created',
