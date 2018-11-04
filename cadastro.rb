@@ -1,5 +1,6 @@
 require 'json'
 require 'sinatra'
+require 'sinatra/json'
 require 'pry'
 require 'securerandom'
 require_relative "room"
@@ -10,10 +11,15 @@ get '/' do
 end
 
 post '/rooms' do
-  @titulo = 'ARRANQUEM UMA CABEÇA POR MIM!!!!'
-  @room_data = params['data']
+  room_data = params['data']
+  created_room = Room.new(SecureRandom.uuid, room_data['name'], Time.now)
 
-  @created_room = Room.new(SecureRandom.uuid, @room_data['name'], Time.now)
-
-  erb :rooms
+  json(
+    status: 'created',
+    data: {
+      uuid: created_room.uuid,
+      name: created_room.name
+    },
+    server_time: Time.now
+  )
 end

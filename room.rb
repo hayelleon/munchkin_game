@@ -8,7 +8,7 @@ class Room
 		@name = name
 		@created_at = created_at
 	end
-	
+
 	def to_s
 		"\nBem Vindo!\n
 		 Sala #{name} criada!\n
