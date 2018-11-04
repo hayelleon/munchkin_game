@@ -12,7 +12,7 @@ get '/' do
 end
 
 post '/rooms' do
-  munchkin_rooms = PStore.new("munchkin_rooms.pstore")
+  munchkin_rooms = PStore.new('munchkin_rooms.pstore')
   room_data = params['data']
   created_room = Room.new(SecureRandom.uuid, room_data['name'])
 
