@@ -16,21 +16,19 @@ post '/rooms' do
   created_room = Room.new(SecureRandom.uuid, room_data['name'])
 
   munchkin_room = {
-    status: 'created',
-    data: {
-      uuid: created_room.uuid,
-      name: created_room.name
-    },
-    server_time: Time.now
+    uuid: created_room.uuid,
+    name: created_room.name
   }
 
   room_storage = PStore.new('storage/munchkin_rooms.pstore')
   room_storage.transaction do
-    room_storage[:uuid] = munchkin_room[:uuid]
-    room_storage[:name] = munchkin_room[:name]
+    room_storage[:rooms] ||= []
+    room_storage[:rooms].push(munchkin_room)
   end
 
-  puts room_storage.to_s
-
-  json munchkin_room
+  json(
+    status: 'created',
+    server_time: Time.now,
+    data: munchkin_room
+  )
 end
